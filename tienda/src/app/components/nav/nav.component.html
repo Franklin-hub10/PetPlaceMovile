@@ -1,0 +1,63 @@
+<nav class="navbar">
+  <div class="container">
+    <!-- Logo -->
+    <a routerLink="/home" class="logo">
+      <img src="https://scontent.fuio10-1.fna.fbcdn.net/v/t39.30808-6/484825920_4013479962266763_7416603653435744282_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFCoslTRoANIbGA9k8VddcWAkkslYQbnU0CSSyVhBudTbk5mFqcMlr83qZ5f0uuHL6BIusTiZVF2tA74cTPbsKb&_nc_ohc=Widz7-ak4MQQ7kNvgH4bBQC&_nc_oc=AdiMFGxTF7AlqNQBKtrb5R7ugQaGbJ9P3jD2diVx7ifKZPgx6r5_kdnihTJpYhHQ9w4&_nc_zt=23&_nc_ht=scontent.fuio10-1.fna&_nc_gid=CaV1Alp1jM7xIHmdYv_UZA&oh=00_AYGmBxKEVeFdfz9na_i5VClh6l5aN2F0WjWA46lWy-K80w&oe=67DA72BF" 
+           class="logo-img" alt="Logo Pet-Shop" />
+      <span class="logo-text">🐾 Pet- Place</span>
+    </a>
+
+    <!-- Botón de menú responsive -->
+    <button (click)="toggleMenu()" class="menu-btn">
+      <span class="sr-only">Abrir menú</span>
+      <svg class="icon" viewBox="0 0 20 18">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+              d="M1 1h18M1 9h18M1 17h18"/>
+      </svg>
+    </button>
+
+    <!-- Menú principal -->
+    <div [class.open]="menuOpen" class="menu">
+      <ul class="menu-list">
+        <li><a routerLink="/home" class="menu-item">Inicio</a></li>
+
+        @if (!isAuthenticated) {
+          <li><a routerLink="/login" class="menu-item">Login</a></li>
+          <li><a routerLink="/registrarse" class="menu-item">Registrarse</a></li>
+        }
+
+        @if (isAuthenticated) {
+          @if (isAdmin() || isEmpleado()) {
+            <li><a routerLink="/productos" class="menu-item"> Ingresar Productos</a></li>
+            <li><a routerLink="/productosLista" class="menu-item"> Listado de Productos </a></li>
+          }
+          @if (isCliente()  || isAdmin()) {
+            <li><a routerLink="/productos-mostrar" class="menu-item">Productos</a></li>
+          }
+
+          <!-- Dropdown para Mascotas -->
+          <li class="menu-item dropdown">
+            <a href="#" (click)="toggleMascotasSubmenu($event)" class="menu-item">
+              Mascotas
+            </a>
+            @if (mascotasSubmenuOpen) {
+              <ul class="submenu">
+                @if (isCliente() || isAdmin()) {
+                  <li><a routerLink="/mascotas/registrar" class="submenu-item">Registrar Mascota</a></li>
+                  <li><a routerLink="/mascotas/lista" class="submenu-item">Mascotas</a></li>
+                }
+                @if (isEmpleado()) {
+                  <li><a routerLink="/mascotas/lista" class="submenu-item">Ver Mascotas</a></li>
+                }
+              </ul>
+            }
+          </li>
+          
+          <li>
+            <button (click)="logout()" class="btn btn-logout">Cerrar Sesión</button>
+          </li>
+        }
+      </ul>
+    </div>
+  </div>
+</nav>

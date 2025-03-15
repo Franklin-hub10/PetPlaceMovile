@@ -1,0 +1,83 @@
+/* Fondo y estructura general */
+.bg-gray-900 {
+    background-color: #1a202c;
+}
+
+/* Estilos para el formulario */
+.input-field {
+    width: 100%;
+    padding: 10px;
+    background: #2d3748;
+    border: 1px solid #4a5568;
+    border-radius: 8px;
+    color: white;
+    transition: border 0.3s, box-shadow 0.3s;
+}
+
+.input-field:focus {
+    border-color: #3182ce;
+    outline: none;
+    box-shadow: 0 0 5px rgba(49, 130, 206, 0.5);
+}
+
+/* Botón de Enviar */
+.btn-submit {
+    background: #3182ce;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease-in-out;
+    width: 100%;
+}
+
+.btn-submit:hover {
+    background: #2563eb;
+    transform: scale(1.05);
+}
+
+/* Estilos para la tabla */
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+/* Estilos de los botones */
+.btn-edit {
+    background: linear-gradient(to right, #84cc16, #22c55e);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    margin-right: 10px;
+}
+
+.btn-edit:hover {
+    background: #16a34a;
+    transform: scale(1.05);
+}
+
+.btn-delete {
+    background: linear-gradient(to right, #ef4444, #b91c1c);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn-delete:hover {
+    background: #991b1b;
+    transform: scale(1.05);
+}

@@ -1,0 +1,107 @@
+<div class="min-h-screen bg-gradient-to-r from-green-200 to-blue-300 flex items-center justify-center p-4">
+  <div class="bg-white shadow-lg rounded-xl p-8 w-full max-w-4xl border border-gray-200">
+    <h2 class="text-3xl font-bold text-center text-gray-700 mb-6">Lista de Mascotas</h2>
+
+    <!-- Mostrar error si hay -->
+    @if (errorMessage) {
+      <div class="text-red-500 text-center mb-4">
+        {{ errorMessage }}
+      </div>
+    }
+
+    <!-- Vista de tarjetas para CLIENTE -->
+    @if (isCliente()) {
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        @for (mascota of mascotas; track mascota.id) {
+          <div class="card bg-white shadow-md rounded-lg p-4 flex flex-col items-center border border-gray-200">
+            <img [src]="asignarImagenMascota(mascotas.indexOf(mascota))" class="rounded-lg w-32 h-32 object-cover mb-2" alt="Mascota">
+
+            @if (mascotaEditando?.id === mascota.id) {
+              <!-- 🔄 Edición de tarjeta -->
+              <input [(ngModel)]="mascotaEditando.nombre" class="w-full bg-gray-100 text-gray-800 rounded-lg p-2 border border-gray-300 focus:border-purple-500 focus:ring focus:ring-purple-400 outline-none">
+              <input [(ngModel)]="mascotaEditando.tipo" class="w-full bg-gray-100 text-gray-800 rounded-lg p-2 border border-gray-300 focus:border-purple-500 focus:ring focus:ring-purple-400 outline-none">
+              <input [(ngModel)]="mascotaEditando.raza" class="w-full bg-gray-100 text-gray-800 rounded-lg p-2 border border-gray-300 focus:border-purple-500 focus:ring focus:ring-purple-400 outline-none">
+              <input [(ngModel)]="mascotaEditando.fechaNacimiento" class="w-full bg-gray-100 text-gray-800 rounded-lg p-2 border border-gray-300 focus:border-purple-500 focus:ring focus:ring-purple-400 outline-none">
+
+              <button (click)="guardarEdicion()" class="w-full px-6 py-2 text-sm font-medium text-white bg-teal-500 rounded-lg hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-400 focus:ring-opacity-50 shadow-md mt-2">
+                Guardar
+              </button>
+              <button (click)="cancelarEdicion()" class="w-full px-6 py-2 text-sm font-medium text-white bg-gray-500 rounded-lg hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50 shadow-md mt-2">
+                Cancelar
+              </button>
+            } @else {
+              <!-- 📌 Vista normal -->
+              <h3 class="text-lg font-bold text-gray-800">{{ mascota.nombre }}</h3>
+              <p class="text-gray-600">Tipo: {{ mascota.tipo }}</p>
+              <p class="text-gray-600">Raza: {{ mascota.raza }}</p>
+              <p class="text-gray-600">Fecha de Nacimiento: {{ mascota.fechaNacimiento | date:'yyyy-MM-dd' }}</p>
+
+              <button (click)="activarEdicion(mascota)"
+                      class="w-full px-6 py-2 text-sm font-medium text-white bg-teal-500 rounded-lg hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-400 focus:ring-opacity-50 shadow-md mt-3">
+                Editar Mascota
+              </button>
+            }
+          </div>
+        }
+      </div>
+    }
+
+    <!-- Vista de tabla para ADMIN y EMPLEADO -->
+    @if (isAdmin() || isEmpleado()) {
+      <table class="min-w-full border-collapse mt-4">
+        <thead>
+          <tr class="bg-gray-100">
+            <th class="border px-3 py-2 text-gray-600">ID</th>
+            <th class="border px-3 py-2 text-gray-600">Nombre</th>
+            <th class="border px-3 py-2 text-gray-600">Tipo</th>
+            <th class="border px-3 py-2 text-gray-600">Raza</th>
+            <th class="border px-3 py-2 text-gray-600">Fecha de Nacimiento</th>
+            @if (isAdmin()) {
+              <th class="border px-3 py-2 text-gray-600">Acciones</th>
+            }
+          </tr>
+        </thead>
+        <tbody>
+          @for (mascota of mascotas; track $index) {
+            <tr class="hover:bg-gray-50">
+              <td class="border px-3 py-2">{{ mascota.id }}</td>
+
+              <!-- Si está en edición, mostrar campos editables -->
+              @if (mascotaEditando?.id === mascota.id) {
+                <td class="border px-3 py-2"><input [(ngModel)]="mascotaEditando.nombre" class="w-full bg-gray-100 text-gray-800 rounded-lg p-2 border border-gray-300 focus:border-purple-500 focus:ring focus:ring-purple-400 outline-none"></td>
+                <td class="border px-3 py-2"><input [(ngModel)]="mascotaEditando.tipo" class="w-full bg-gray-100 text-gray-800 rounded-lg p-2 border border-gray-300 focus:border-purple-500 focus:ring focus:ring-purple-400 outline-none"></td>
+                <td class="border px-3 py-2"><input [(ngModel)]="mascotaEditando.raza" class="w-full bg-gray-100 text-gray-800 rounded-lg p-2 border border-gray-300 focus:border-purple-500 focus:ring focus:ring-purple-400 outline-none"></td>
+                <td class="border px-3 py-2"><input [(ngModel)]="mascotaEditando.fechaNacimiento" type="date" class="w-full bg-gray-100 text-gray-800 rounded-lg p-2 border border-gray-300 focus:border-purple-500 focus:ring focus:ring-purple-400 outline-none"></td>
+              } @else {
+                <td class="border px-3 py-2">{{ mascota.nombre }}</td>
+                <td class="border px-3 py-2">{{ mascota.tipo }}</td>
+                <td class="border px-3 py-2">{{ mascota.raza }}</td>
+                <td class="border px-3 py-2">{{ mascota.fechaNacimiento | date:'yyyy-MM-dd' }}</td>
+              }
+
+              @if (isAdmin()) {
+                <td class="border px-3 py-2 flex gap-2 justify-center">
+                  @if (mascotaEditando?.id === mascota.id) {
+                    <button (click)="guardarEdicion()" class="w-full px-6 py-2 text-sm font-medium text-white bg-teal-500 rounded-lg hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-400 focus:ring-opacity-50 shadow-md">
+                      Guardar
+                    </button>
+                    <button (click)="cancelarEdicion()" class="w-full px-6 py-2 text-sm font-medium text-white bg-gray-500 rounded-lg hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50 shadow-md">
+                      Cancelar
+                    </button>
+                  } @else {
+                    <button (click)="activarEdicion(mascota)" class="w-full px-6 py-2 text-sm font-medium text-white bg-teal-500 rounded-lg hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-400 focus:ring-opacity-50 shadow-md">
+                      Editar
+                    </button>
+                    <button (click)="eliminarMascota(mascota.id)" class="w-full px-6 py-2 text-sm font-medium text-white bg-red-500 rounded-lg hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-50 shadow-md">
+                      Eliminar
+                    </button>
+                  }
+                </td>
+              }
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
+  </div>
+</div>

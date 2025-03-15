@@ -1,0 +1,47 @@
+<br><br><br>    
+
+
+<div class="home-container">
+    <h1 class="home-title">🐾 Bienvenidos a PetPlace 🐾</h1>
+
+<!-- Galería de Videos -->
+
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    @for (video of videos; track video.src) {
+        <div class="relative">
+            <video #videoElement class="w-full rounded-xl shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-2xl"
+                   [src]="video.src"
+                   [title]="video.alt"
+                   autoplay muted loop playsinline disableRemotePlayback>
+                Tu navegador no soporta el video.
+            </video>
+        </div>
+    }
+</div>
+
+
+
+
+    <div class="divider"></div>
+
+   
+
+    <!-- Servicios -->
+    <div class="services-grid">
+        @for (service of services; track service.title) {
+            <div class="service-card">
+                <img class="service-img" [src]="service.img" [alt]="service.title">
+                <h3>{{ service.icon }} {{ service.title }}</h3>
+                <p>{{ service.description }}</p>
+            </div>
+        }
+    </div>
+    
+
+    <div class="action-buttons">
+        <a href="https://wa.me/593969059135" class="contact-btn">📞 Contáctanos</a>
+        @if (!isAuthenticated()) {
+            <a routerLink="/registrarse" class="register-btn">📝 Registrarse</a>
+        }
+    </div>
+</div>

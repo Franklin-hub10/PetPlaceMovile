@@ -1,0 +1,148 @@
+/* === Estilos Generales === */
+.home-container {
+    min-height: 100vh;
+    padding: 1.5rem;
+    background-color: #ffffff;
+    background-image: url('https://www.transparenttextures.com/patterns/paw-print.png');
+  }
+  
+  /* === Título Principal === */
+  .home-title {
+    font-size: 3rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* === Galería de Videos === */
+  .video-gallery {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+  
+  .video-item video {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .video-item video:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* === Líneas Divisorias === */
+  .divider {
+    border-top: 4px solid #e2e8f0;
+    width: 75%;
+    margin: 2rem auto;
+  }
+  
+  /* === Misión y Visión === */
+  .mission-vision-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3rem;
+  }
+  
+  .mission-box,
+  .vision-box {
+    background: #ffffff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+    border-left: 8px solid;
+  }
+  
+  .mission-box {
+    border-color: #a855f7; /* Morado */
+  }
+  
+  .vision-box {
+    border-color: #7e22ce; /* Morado oscuro */
+  }
+  
+  /* === Sección de Servicios === */
+  .services-container {
+    text-align: center;
+  }
+  
+  .services-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #1e293b;
+    margin-bottom: 1.5rem;
+  }
+  
+  .services-grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+  
+  .service-card {
+    background: #ffffff;
+    padding: 1.5rem;
+    border-radius: 16px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #d1d5db;
+  }
+  
+  .service-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+  }
+  
+  .service-img {
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .service-img:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* === Botones === */
+  .action-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  
+  .contact-btn,
+  .register-btn {
+    width: 100%;
+    max-width: 250px;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ffffff;
+    background-color: #0d9488;
+    border-radius: 8px;
+    transition: background 0.3s ease, transform 0.2s ease;
+    text-align: center;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .contact-btn:hover,
+  .register-btn:hover {
+    background-color: #0f766e;
+    transform: scale(1.05);
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+  }
+  

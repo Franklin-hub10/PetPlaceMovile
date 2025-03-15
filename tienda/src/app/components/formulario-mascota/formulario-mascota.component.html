@@ -1,0 +1,44 @@
+
+<br>
+<br>
+
+<div class="min-h-screen flex items-center justify-center p-6 bg-white">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md border border-gray-300">
+      <h2 class="text-3xl font-bold text-center mb-6 text-gray-800">Registrar Mascota</h2>
+      <form #formulario="ngForm" (ngSubmit)="guardarMascota()">
+        <div class="mb-5">
+          <label for="nombre" class="block text-sm font-medium text-gray-700">Nombre</label>
+          <input type="text" id="nombre" name="nombre" [(ngModel)]="nombre"
+                 class="w-full bg-gray-100 text-gray-800 rounded-lg p-3 mt-1 border border-gray-300 focus:border-purple-500 focus:ring focus:ring-purple-400 outline-none"
+                 placeholder="Nombre de la mascota" required>
+        </div>
+        
+        <div class="mb-5">
+          <label for="tipo" class="block text-sm font-medium text-gray-700">Tipo</label>
+          <input type="text" id="tipo" name="tipo" [(ngModel)]="tipo"
+                 class="w-full bg-gray-100 text-gray-800 rounded-lg p-3 mt-1 border border-gray-300 focus:border-purple-500 focus:ring focus:ring-purple-400 outline-none"
+                 placeholder="Ejemplo: Perro, Gato, etc." required>
+        </div>
+        
+        <div class="mb-5">
+          <label for="raza" class="block text-sm font-medium text-gray-700">Raza</label>
+          <input type="text" id="raza" name="raza" [(ngModel)]="raza"
+                 class="w-full bg-gray-100 text-gray-800 rounded-lg p-3 mt-1 border border-gray-300 focus:border-purple-500 focus:ring focus:ring-purple-400 outline-none"
+                 placeholder="Raza de la mascota" required>
+        </div>
+        
+        <div class="mb-5">
+          <label for="fechaNacimiento" class="block text-sm font-medium text-gray-700">Fecha de Nacimiento</label>
+          <input type="date" id="fechaNacimiento" name="fechaNacimiento" [(ngModel)]="fechaNacimiento"
+                 class="w-full bg-gray-100 text-gray-800 rounded-lg p-3 mt-1 border border-gray-300 focus:border-purple-500 focus:ring focus:ring-purple-400 outline-none"
+                 required>
+        </div>
+        
+        <button type="submit"
+                class="w-full px-6 py-2 text-sm font-medium text-white bg-teal-500 rounded-lg hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-400 focus:ring-opacity-50 shadow-md">
+          Registrar Mascota
+        </button>
+      </form>
+    </div>
+  </div>
+  

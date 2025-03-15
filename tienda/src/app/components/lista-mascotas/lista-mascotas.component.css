@@ -1,0 +1,138 @@
+/* 🎨 Mejora el diseño de los inputs y botones */
+.input-edit, .input-edit-table {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 6px;
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  .input-edit-table {
+    width: 120px;
+  }
+  
+  .btn-save {
+    background-color: #28a745;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: 0.3s;
+  }
+  
+  .btn-save:hover {
+    background-color: #218838;
+  }
+  
+  .btn-cancel {
+    background-color: #6c757d;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: 0.3s;
+  }
+  
+  .btn-cancel:hover {
+    background-color: #5a6268;
+  }
+  
+  .btn-edit {
+    background-color: #007bff;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: 0.3s;
+  }
+  
+  .btn-edit:hover {
+    background-color: #0056b3;
+  }
+  
+  .btn-delete {
+    background-color: #dc3545;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: 0.3s;
+  }
+  
+  .btn-delete:hover {
+    background-color: #c82333;
+  }
+  
+  /* 📏 Espaciado y diseño compacto */
+  table {
+    width: 100%;
+  }
+  
+  th, td {
+    text-align: center;
+    padding: 8px;
+  }
+  
+  .card {
+    width: 100%;
+  }
+  
+  /* 🟢 Contenedor de la tarjeta */
+.card {
+  background-color: white;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  border: 1px solid #ddd;
+  transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* 🟡 Imagen circular con borde */
+.card img {
+  width: 100px;  /* Ajusta el tamaño */
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #ddd; /* Borde sutil */
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 🔵 Botón elegante */
+.btn {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.btn-edit {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-edit:hover {
+  background-color: #0056b3;
+}
+
+.btn-delete {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn-delete:hover {
+  background-color: #a71d2a;
+}
+
+/* 🔴 Campos de edición */
+.input-edit-table {
+  width: 100%;
+  padding: 0.3rem;
+  border: 1px solid #ccc;
+  border-radius: 0.3rem;
+  text-align: center;
+}

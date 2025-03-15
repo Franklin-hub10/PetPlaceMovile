@@ -1,0 +1,83 @@
+<div class="container mx-auto p-6">
+    <h2 class="text-3xl font-bold text-center mb-6 text-gray-800">Los Mejores Productos</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        @for (producto of productos; track producto.id) {
+            <div class="bg-white shadow-lg rounded-lg p-4">
+                <img src="{{ producto.url }}" alt="{{ producto.nombre }}" class="w-full h-40 object-cover rounded-lg mb-4">
+
+                <h3 class="text-lg font-semibold text-gray-800">{{ producto.nombre }}</h3>
+                <p class="text-green-600 font-bold">${{ producto.precio }}</p>
+
+                <div class="flex items-center mt-3">
+                    <button (click)="disminuirCantidad(producto)"
+                        class="px-3 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400">
+                        -
+                    </button>
+                    <span class="px-4">{{ producto.cantidad }}</span>
+                    <button (click)="aumentarCantidad(producto)"
+                        class="px-3 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400">
+                        +
+                    </button>
+                </div>
+
+                <button (click)="agregarCarrito(producto)" 
+                    class="w-full px-6 py-2 text-sm font-medium text-white bg-teal-500 
+                    rounded-lg hover:bg-teal-600 focus:outline-none 
+                    focus:ring-2 focus:ring-teal-400 focus:ring-opacity-50 shadow-md mt-3">
+                    Agregar al Carrito
+                </button>
+            </div>
+        }
+    </div>
+</div>
+
+<!-- 📦 Modal de Factura -->
+<div id="modalFactura" class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+        <h3 class="text-xl font-semibold mb-4 text-center">Factura</h3>
+        <ul>
+            @for (item of carrito; track item.id) {
+                <li class="flex justify-between items-center border-b py-3">
+                    <!-- Imagen pequeña -->
+                    <img src="{{ item.url }}" alt="{{ item.nombre }}" class="w-12 h-12 object-cover rounded-lg mr-3">
+
+                    <div class="flex-1">
+                        <span class="text-gray-800 font-medium">{{ item.nombre }}</span>
+                        <p class="text-sm text-gray-600">x{{ item.cantidad }}</p>
+                    </div>
+                    
+                    <span class="font-bold text-gray-800">${{ item.precio * item.cantidad }}</span>
+                </li>
+            }
+        </ul>
+
+        <div class="mt-4 text-right">
+            <p class="font-semibold text-lg">Subtotal: ${{ subtotal }}</p>
+            <p class="text-gray-600">IVA (15%): ${{ iva }}</p>
+            <p class="font-bold text-xl text-gray-800 mt-2">Total: ${{ total }}</p>
+        </div>
+
+        <button (click)="confirmarCompra()" 
+            class="w-full px-6 py-3 text-sm font-medium text-white bg-green-500 
+            rounded-lg hover:bg-green-600 focus:outline-none 
+            focus:ring-2 focus:ring-green-400 focus:ring-opacity-50 shadow-md mt-4">
+            Finalizar Compra
+        </button>
+    </div>
+</div>
+
+<!-- ✅ Mensaje de compra exitosa -->
+<div id="mensajeExito" class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-sm text-center">
+        <h3 class="text-lg font-semibold text-gray-800">¡Compra Exitosa! 🎉</h3>
+        <p class="text-gray-600 mt-2">Gracias por tu compra.</p>
+
+        <button (click)="cerrarMensajeExito()" 
+            class="mt-4 px-6 py-2 text-sm font-medium text-white bg-teal-500 
+            rounded-lg hover:bg-teal-600 focus:outline-none focus:ring-2 
+            focus:ring-teal-400 focus:ring-opacity-50 shadow-md">
+            Cerrar
+        </button>
+    </div>
+</div>

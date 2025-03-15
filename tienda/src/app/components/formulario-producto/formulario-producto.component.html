@@ -1,0 +1,50 @@
+<div class="min-h-screen flex items-center justify-center p-6 bg-white">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md border border-gray-300">
+        <h2 class="text-3xl font-bold text-center mb-6 text-gray-800">Registrar Producto</h2>
+        <form #formulario="ngForm" (ngSubmit)="guardar(formulario)">
+            <!-- Nombre del Producto -->
+            <div class="mb-5">
+                <label for="nombre" class="block text-sm font-medium text-gray-700">Nombre del Producto</label>
+                <input type="text" id="nombre" name="nombre" [(ngModel)]="nombre"
+                       class="w-full bg-gray-100 text-gray-800 rounded-lg p-3 mt-1 border border-gray-300 
+                              focus:border-purple-500 focus:ring focus:ring-purple-400 outline-none"
+                       placeholder="Ejemplo: Laptop, Celular, etc." required>
+            </div>
+
+            <!-- Descripción -->
+            <div class="mb-5">
+                <label for="descripcion" class="block text-sm font-medium text-gray-700">Descripción</label>
+                <textarea id="descripcion" name="descripcion" [(ngModel)]="descripcion"
+                          class="w-full bg-gray-100 text-gray-800 rounded-lg p-3 mt-1 border border-gray-300 
+                                 focus:border-purple-500 focus:ring focus:ring-purple-400 outline-none"
+                          placeholder="Breve descripción del producto" required></textarea>
+            </div>
+
+            <!-- Precio -->
+            <div class="mb-5">
+                <label for="precio" class="block text-sm font-medium text-gray-700">Precio</label>
+                <input type="number" id="precio" name="precio" [(ngModel)]="precio" step="0.01" min="0"
+                       class="w-full bg-gray-100 text-gray-800 rounded-lg p-3 mt-1 border border-gray-300 
+                              focus:border-purple-500 focus:ring focus:ring-purple-400 outline-none"
+                       placeholder="Ejemplo: 49.99" required>
+            </div>
+
+            <!-- Stock -->
+            <div class="mb-5">
+                <label for="stock" class="block text-sm font-medium text-gray-700">Stock</label>
+                <input type="number" id="stock" name="stock" [(ngModel)]="stock" min="0"
+                       class="w-full bg-gray-100 text-gray-800 rounded-lg p-3 mt-1 border border-gray-300 
+                              focus:border-purple-500 focus:ring focus:ring-purple-400 outline-none"
+                       placeholder="Cantidad disponible" required>
+            </div>
+
+            <!-- Botón de Guardar -->
+            <button type="submit"
+                    class="w-full px-6 py-2 text-sm font-medium text-white bg-teal-500 
+                           rounded-lg hover:bg-teal-600 focus:outline-none 
+                           focus:ring-2 focus:ring-teal-400 focus:ring-opacity-50 shadow-md">
+                Guardar Producto
+            </button>
+        </form>
+    </div>
+</div>

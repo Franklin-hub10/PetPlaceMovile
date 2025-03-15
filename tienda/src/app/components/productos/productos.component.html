@@ -1,0 +1,100 @@
+<div class="container mx-auto p-6">
+    <h2 class="text-3xl font-bold text-center mb-6 text-gray-800">Lista de Productos</h2>
+
+    <div class="overflow-x-auto">
+        <table class="w-full border-collapse bg-white shadow-lg rounded-lg">
+            <thead class="bg-gray-200">
+                <tr>
+                    <th class="border px-4 py-3 text-gray-700 text-left">ID</th>
+                    <th class="border px-4 py-3 text-gray-700 text-left">Nombre</th>
+                    <th class="border px-4 py-3 text-gray-700 text-left">Precio</th>
+                    <th class="border px-4 py-3 text-gray-700 text-left">Stock</th>
+                    <th class="border px-4 py-3 text-gray-700 text-center">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (producto of productos; track producto.id) {
+                    <tr class="hover:bg-gray-100 transition duration-150 ease-in-out @if (productoEditando?.id === producto.id) {'bg-yellow-100'}">
+                        <td class="border px-4 py-3">{{ producto.id }}</td>
+
+                        <!-- Edición de Producto -->
+                        @if (productoEditando?.id === producto.id) {
+                            <td class="border px-4 py-3">
+                                <input [(ngModel)]="productoEditando.nombre" 
+                                    class="border rounded-lg px-3 py-2 w-full focus:ring focus:ring-teal-400 focus:border-teal-500 outline-none">
+                            </td>
+                            <td class="border px-4 py-3">
+                                <input [(ngModel)]="productoEditando.precio" type="number" 
+                                    class="border rounded-lg px-3 py-2 w-full focus:ring focus:ring-teal-400 focus:border-teal-500 outline-none">
+                            </td>
+                            <td class="border px-4 py-3">
+                                <input [(ngModel)]="productoEditando.stock" type="number" 
+                                    class="border rounded-lg px-3 py-2 w-full focus:ring focus:ring-teal-400 focus:border-teal-500 outline-none">
+                            </td>
+                        } @else {
+                            <td class="border px-4 py-3 text-gray-800">{{ producto.nombre }}</td>
+                            <td class="border px-4 py-3 font-semibold text-green-600">${{ producto.precio }}</td>
+                            <td class="border px-4 py-3 text-center font-bold text-blue-600">{{ producto.stock }}</td>
+                        }
+
+                        <!-- Acciones por Rol -->
+                        <td class="border px-4 py-3 flex gap-2 justify-center">
+                            @if (isAdmin()) {
+                                @if (productoEditando?.id === producto.id) {
+                                    <button (click)="guardarEdicion()" 
+                                        class="w-full px-6 py-2 text-sm font-medium text-white bg-teal-500 
+                                        rounded-lg hover:bg-teal-600 focus:outline-none 
+                                        focus:ring-2 focus:ring-teal-400 focus:ring-opacity-50 shadow-md">
+                                        Guardar
+                                    </button>
+                                    <button (click)="cancelarEdicion()" 
+                                        class="w-full px-6 py-2 text-sm font-medium text-white bg-teal-500 
+                                        rounded-lg hover:bg-teal-600 focus:outline-none 
+                                        focus:ring-2 focus:ring-teal-400 focus:ring-opacity-50 shadow-md">
+                                        Cancelar
+                                    </button>
+                                } @else {
+                                    <button (click)="activarEdicion(producto)" 
+                                        class="w-full px-6 py-2 text-sm font-medium text-white bg-teal-500 
+                                        rounded-lg hover:bg-teal-600 focus:outline-none 
+                                        focus:ring-2 focus:ring-teal-400 focus:ring-opacity-50 shadow-md">
+                                        Editar
+                                    </button>
+                                    <button (click)="eliminarProducto(producto.id)" 
+                                        class="w-full px-6 py-2 text-sm font-medium text-white bg-teal-500 
+                                        rounded-lg hover:bg-teal-600 focus:outline-none 
+                                        focus:ring-2 focus:ring-teal-400 focus:ring-opacity-50 shadow-md">
+                                        Eliminar
+                                    </button>
+                                }
+                            }
+                            @if (isEmpleado()) {
+                                @if (productoEditando?.id === producto.id) {
+                                    <button (click)="guardarEdicion()" 
+                                        class="w-full px-6 py-2 text-sm font-medium text-white bg-teal-500 
+                                        rounded-lg hover:bg-teal-600 focus:outline-none 
+                                        focus:ring-2 focus:ring-teal-400 focus:ring-opacity-50 shadow-md">
+                                        Actualizar
+                                    </button>
+                                    <button (click)="cancelarEdicion()" 
+                                        class="w-full px-6 py-2 text-sm font-medium text-white bg-teal-500 
+                                        rounded-lg hover:bg-teal-600 focus:outline-none 
+                                        focus:ring-2 focus:ring-teal-400 focus:ring-opacity-50 shadow-md">
+                                        Cancelar
+                                    </button>
+                                } @else {
+                                    <button (click)="activarEdicion(producto)" 
+                                        class="w-full px-6 py-2 text-sm font-medium text-white bg-teal-500 
+                                        rounded-lg hover:bg-teal-600 focus:outline-none 
+                                        focus:ring-2 focus:ring-teal-400 focus:ring-opacity-50 shadow-md">
+                                        Actualizar Stock
+                                    </button>
+                                }
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

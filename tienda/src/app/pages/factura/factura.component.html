@@ -1,0 +1,54 @@
+<div class="relative min-h-screen p-6 bg-white" style="background-image: url('https://www.transparenttextures.com/patterns/paw-print.png');">
+    
+    <!-- Título principal -->
+    <h2 class="text-4xl font-extrabold text-center mb-8 drop-shadow-lg text-purple-800">🧾 Factura</h2>
+
+    <!-- Tabla de Productos en la Factura -->
+    <div class="overflow-x-auto bg-white p-6 rounded-xl shadow-lg border border-gray-300 max-w-5xl mx-auto">
+        <table class="w-full text-sm text-left text-gray-700">
+            <thead class="text-xs uppercase bg-purple-500 text-white">
+                <tr>
+                    <th class="px-6 py-3">Producto</th>
+                    <th class="px-6 py-3">Cantidad</th>
+                    <th class="px-6 py-3">Precio Unitario</th>
+                    <th class="px-6 py-3">Total</th>
+                    <th class="px-6 py-3 text-center">Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of carrito; let i = index" class="border-b border-gray-300 hover:bg-purple-100 transition">
+                    <td class="px-6 py-4">{{ item.nombre }}</td>
+                    <td class="px-6 py-4">{{ item.cantidad }}</td>
+                    <td class="px-6 py-4">{{ item.precio | currency:'USD' }}</td>
+                    <td class="px-6 py-4">{{ (item.precio * item.cantidad) | currency:'USD' }}</td>
+                    <td class="px-6 py-4 text-center">
+                        <button (click)="eliminarProducto(i)" class="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-md transition shadow-md">
+                            ❌
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <br><br> <!-- Espaciado extra -->
+
+    <!-- Totales -->
+    <div class="max-w-5xl mx-auto bg-white p-6 rounded-xl shadow-lg border border-gray-300 mt-8 text-right">
+        <p class="text-xl text-gray-700">Subtotal: <span class="font-bold">{{ subtotal | currency:'USD' }}</span></p>
+        <p class="text-xl text-gray-700">IVA (15%): <span class="font-bold">{{ iva | currency:'USD' }}</span></p>
+        <p class="text-2xl font-bold mt-4">Total a Pagar: <span class="text-green-500">{{ total | currency:'USD' }}</span></p>
+    </div>
+
+    <br><br> <!-- Espaciado extra -->
+
+    <!-- Botones -->
+    <div class="text-center">
+        <button (click)="limpiarFactura()" class="bg-red-500 hover:bg-red-600 text-white font-semibold py-3 px-6 rounded-lg transition transform hover:scale-105 shadow-lg">
+            🗑️ Vaciar Factura
+        </button>
+        <button routerLink="home" class="bg-purple-500 hover:bg-purple-600 text-white font-semibold py-3 px-6 rounded-lg transition transform hover:scale-105 shadow-lg ml-4">
+            ✅ Finalizar Compra
+        </button>
+    </div>
+</div>
